@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'Font Awesome 5 Free';
+    src: url("../../../");
+}
+
+.footer-blog {
+
+  background-color: #809bce;
+  color: #fff;
+  padding: 20px;
+
+}
+
+/* استایل لیست داخل فوتر */
+.footer-blog ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* استایل هر المان داخل لیست فوتر */
+.footer-blog li {
+  margin-bottom: 10px;
+}
+
+/* استایل هر المان داخل لیست فوتر */
+.footer-blog li div {
+  font-size: 1.2em;
+  margin-left: 10px;
+}
+
+/* استایل لینک ایمیل */
+.footer-blog li:nth-child(2) div:before {
+  content: "\f1ee";
+  /*font-family: "Font Awesome 5 Free";*/
+  margin-right: 10px;
+}
+
+/* استایل آیکون شبکه‌های اجتماعی */
+.footer-blog li:nth-child(3) div:before {
+  content: "\f0e1";
+  /*font-family: "Font Awesome 5 Free";*/
+  margin-right: 10px;
+}

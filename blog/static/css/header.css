@@ -1,0 +1,40 @@
+/* استایل هدر */
+.header-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2d4059;
+  color: #fff;
+  padding: 20px;
+}
+
+.search__box {
+  place
+}
+
+/* استایل لیست داخل هدر */
+.header-list li {
+  list-style: none;
+}
+
+/* استایل لوگو */
+.header-list li:first-child {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-right: auto;
+}
+
+/* استایل جستجو */
+.header-list li:last-child {
+  margin-left: auto;
+}
+
+.header-list li:last-child input[type="search"] {
+  background-color: #fff;
+  border: none;
+  border-radius: 10px;
+  color: #2d4059;
+  font-size: 1em;
+  padding: 10px;
+  width: 200px;
+}

@@ -1,0 +1,82 @@
+{% extends 'blog/Parrent/base.html' %}
+{% load static %}
+{% block title %}
+    Account
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/forms/account form.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="account-form">
+        <h1>فرم اطلاعات شخصی {{ account.user.first_name }} </h1>
+        <form method="POST">
+            {% csrf_token %}
+
+            <label class="first-name">
+                نام: <br>
+                <input type="text" name="f_name"
+                        {% if form.f_name.value %}
+                       value="{{ form.f_name.value }}"
+                {% else %}
+                       value="{{ account.user.first_name | default:" " }}"
+                {% endif %}>
+            </label>
+            <br>
+            <label class="last-name">
+                نام خانوادگی: <br>
+                <input type="text" name="l_name" required
+                        {% if form.l_name.value %}
+                       value="{{ form.l_name.value }}"
+                {% else %}
+                       value="{{ account.user.last_name | default:" " }}"
+                {% endif %}>
+            </label>
+            <label class="Age">
+                سن: <br>
+                <input type="number" name="age"  required {% if form.age.value %}
+                       value="{{ form.age.value }}"{% else %}
+                       value="{{ account.age |default:" " }}"{% endif %}>
+            </label>
+            <br>
+            <label class="phone">
+                شماره همراه: <br>
+                <input name="phone" type="text" value="{{ account.phone | default:" " }}" >
+            </label>
+            <br>
+            <label>
+                جنسیت:
+                <br>
+                <input type="radio" name="sex" value="مرد" {% if account.sex == 'مرد' %} checked {% endif %}>
+                آقا
+                <input type="radio" name="sex" value="زن" {% if account.sex == 'زن' %} checked {% endif %}>
+                خانوم
+            </label>
+            <br>
+            <label class="address">آدرس: <br>
+                <textarea name="address" required>{% if form.address.value %}{{ form.address.value }}{% else %}{{ account.address |default:" " }}{% endif %}</textarea>
+            </label>
+            <br>
+            <input type="submit" value="ثبت">
+
+        </form>
+    </div>
+
+    <div class="errorlist">
+        {% if form.errors %}
+            لطفا خطاهای زیر را اصلاح کنید: <br>
+            {% for field in form %}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        خطای ۱ :
+                        <br>
+                        {{ field.label }} : <br>{{ error }}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            {% if form.non_field_errors %}
+                خطای ۲:
+                {{ form.non_field_errors }}
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

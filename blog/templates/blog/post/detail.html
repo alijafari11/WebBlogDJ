@@ -1,0 +1,75 @@
+{% extends 'blog/Parrent/base.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/Posts/post-detail.css" %}">
+    <link rel="stylesheet" href="{% static "css/Posts/post-list.css" %}">
+{% endblock %}
+{% block title %}
+    Detail
+{% endblock %}
+{% block content %}
+    <div class="pd-content">
+        <span>{{ post.titles }}</span>
+        {#        <span>{{ post.author }}</span>#}
+        <span>{{ post.body | linebreaks }}</span>
+        {#        <p>{{ post.body | truncatewords:10}}</p> برای تعداد کلمه نمایش#}
+        <span>{{ post.publish }}</span>
+
+    </div>
+    <a href="{% url 'blog:share-post' post.id %}">
+        <h2>
+            <img src="{% static "icons/share.png" %}" alt="share" height="15px" width="15px">
+        </h2>
+    </a>
+    <div style="direction: rtl;font-size: 23px;margin-top: 40px">
+        پست های مربوطه :
+    </div>
+    {% for post in similar_posts %}
+        <div class="s__post">
+            <a class="s__post-span" href="{{ post.get_absolute_url }}">
+                {{ post.titles }}
+            </a>
+        </div>
+    {% endfor %}
+    <div class="comment">
+        <div class="comment-count">
+            {% with comments.count as count %}
+                تعداد کامنت ها :  {{ count }}
+            {% endwith %}
+        </div>
+        {% for comment in comments %}
+            <div class="comment-body">
+                {{ forloop.counter }}ـ
+                {{ comment.name }} : {{ comment.body }}
+            </div>
+
+            <div class="comment-details">
+                {{ comment.created }}
+            </div>
+
+        {% empty %}
+            <div class="comment-empty">
+                کامنتی وجود ندارد.
+            </div>
+        {% endfor %}
+        <div>
+            {% if new_comment %}
+                <div class="comment-success">
+                    کامنت شما با موفقیت ارسال شد.
+                </div>
+            {% endif %}
+            <div class="comment-heading">
+                افزودن کامنت جدید:
+            </div>
+            <form class="comment-form" method="post">
+                {% csrf_token %}
+                {{ comment_form.as_div }}
+                <div>
+                    <input class="comment-submit" type="submit" value="ارسال">
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

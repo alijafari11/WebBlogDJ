@@ -1,0 +1,63 @@
+{% extends 'blog/Parrent/base.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/Posts/post-list.css" %}">
+{% endblock %}
+{% block title %}
+    List
+{% endblock %}
+{% block content %}
+    <h1>لیست پست ها</h1>
+    {% if tag %}
+        <h1>
+            پست های مربوط به {{ tag.name }} فیلتر شده اند
+        </h1>
+    {% endif %}
+    <div class="pl-items">
+
+        {% for post in posts %}
+            <span class="pl__sp">
+              <a href={{ post.get_absolute_url }}>
+                  <div class="pl-content">
+                          <div class="pl__content-header">
+                              <p class="pl-primery">
+                            {{ post.author.first_name }} {{ post.author.last_name  }}
+                            </p>
+                          </div>
+                          <div class="pl__body">
+                              <p>
+                              {{ post.titles }}
+                              </p>
+                            <p class="pl__body-p">
+                            {{ post.body | truncatewords:3 }}
+                            </p>
+{#                              <p>#}
+{#                            برچسب ها: <br>#}
+{#                            <a href="">#}
+{#                            {{ post.tags.all | join:", " }}#}
+{#                                </a>#}
+{#                              </p>#}
+                          <p>
+                              {% for tag in post.tags.all %}
+                                  <a  class="tag" href="{% url "blog:post-list-tag" tag.slug %}">
+                                  {{ tag.name }}
+                                  </a>
+                                  {% if not forloop.last %}
+                                     -
+                                  {% endif %}
+
+                              {% endfor %}
+</p>
+                          </div>
+                  </div>
+              </a>
+            </span>
+        {% endfor %}
+    </div>
+    {% include 'blog/partial/pagination.html' with page=posts %}
+
+    <div class="Clock">
+        {% now "SHORT_DATETIME_FORMAT" %}
+    </div>
+{% endblock %}
+

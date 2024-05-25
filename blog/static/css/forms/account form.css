@@ -1,0 +1,13 @@
+.account-form h1{
+    text-align: right;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
+    direction: rtl;
+
+}
+form input{
+    text-align: right;
+}

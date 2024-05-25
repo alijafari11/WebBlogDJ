@@ -1,0 +1,87 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    gap: 1rem;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    background-color: #d6eadf;
+
+
+}
+
+.base-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+    gap: 36px;
+}
+
+.base-footer {
+    margin-top: auto;
+}
+
+.home__text {
+    text-align: right;
+    font-size: 48px;
+    font-family: '2  Farnaz';
+    margin-right: 20px;
+}
+
+
+/*----------------------------*/
+/*TEST PART */
+.test__page {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.header {
+    direction: rtl;
+    margin-right: 20px;
+    font-family: "B Titr", serif;
+    font-size: 24px;
+}
+
+.test__part {
+    direction: rtl;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.pink {
+    color: #ff6474;
+}
+
+.oil {
+    color: #2d4059;
+}
+
+.blue {
+    color: #809bce;
+}
+
+.test__part-1 {
+    display: initial;
+}
+
+.back-button {
+    background-color: #2d4059;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    color: #f7f7f7;
+}
+
+.back-button:hover {
+    background-color: #809bce;
+    transition: 0.3s;
+}
+
+/*----------------------------*/

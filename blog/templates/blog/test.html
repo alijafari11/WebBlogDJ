@@ -1,0 +1,39 @@
+{% extends 'blog/Parrent/base.html' %}
+{% block title %}
+    Home
+{% endblock %}
+{% block head %}
+
+{% endblock %}
+{% block content %}
+    <div class="test__page">
+        <div class="header">
+            صفحه تست
+        </div>
+        <div class="test__part">
+            <div>
+                {% for i in 'abc' %}
+
+                    <p style="color: {% cycle 'orange' 'blue' 'yellow' %}">{{ i }}</p>
+                    {% for j in '12345' %}
+                        {% cycle 'pink' 'oil' 'blue' as col silent %}
+                        <p class="{{ col }} test__part-1">
+                            {{ j }}
+                        </p>
+
+                    {% endfor %}
+                    {% resetcycle %}
+                {% endfor %}
+
+            </div>
+            {% filter title %}
+                <a class="back-button" href="{% url 'blog:home' %}">
+                    back to home
+                </a>
+
+            {% endfilter %}
+
+
+        </div>
+    </div>
+{% endblock %}

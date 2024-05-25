@@ -1,0 +1,65 @@
+{% extends 'blog/Parrent/base.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static "/css/forms/suppot form.css" %}">
+{% endblock %}
+{% block title %}
+    تماس با ما
+{% endblock %}
+
+{% block content %}
+    <h1>صفحه تماس با ما</h1>
+    <h2>
+        {% if sent %}
+            ☺پیام شما با موفقیت ارسال شد
+        {% endif %}
+    </h2>
+    <form method="post" style="direction: rtl">
+        {% csrf_token %}
+
+        <label>نام و نام خانوادگی: <br>
+            <input type="text" name="name" required maxlength="25">
+        </label>
+        <label>ایمیل: <br>
+            <input type="email" name="email" required>
+        </label>
+        <label>شماره همراه: <br>
+            <input type="text" name="phone" maxlength="11">
+        </label>
+        <label>موضوع: <br>
+            <select name="subject" required>
+                <option value="انتقاد و پیشنهاد ">
+                    انتقاد و پیشنهاد
+                </option>
+                <option value="شکایات ">
+                    شکایات
+                </option>
+            </select>
+        </label>
+        <label>متن پیام: <br>
+            <textarea name="message" ></textarea>
+        </label>
+        <label for="submid">
+            <input type="submit" value="ارسال پیام">
+        </label>
+    </form>
+
+    <div class="errorlist">
+        {% if form.errors %}
+            لطفا خطاهای زیر را اصلاح کنید: <br>
+            {% for field in form %}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        خطای ۱ :
+                        <br>
+                        {{ field.label }} : <br>{{ error }}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            {% if form.non_field_errors %}
+                خطای ۲:
+                {{ form.non_field_errors }}
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+/* استایل لیست منو */
+.navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* استایل لینک‌های منو */
+.navigation li a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #fff;
+  background-color: #809bce;
+  border-radius: 5px;
+  margin-right: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* استایل هاور لینک‌های منو */
+.navigation li a:hover {
+  background-color: #95b8d1;
+}
+
+/* استایل لینک انتخاب شده */
+.navigation li a.active {
+  background-color: #b8e0d2;
+}

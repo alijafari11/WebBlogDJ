@@ -1,0 +1,55 @@
+{% extends 'blog/Parrent/base.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static "/css/forms/share-post.css" %}">
+{% endblock %}
+{% block title %}
+    اشتراک گذاری پست
+{% endblock %}
+
+{% block content %}
+    <h1>صفحه اشتراک گذاری پست</h1>
+    <h2>
+        {% if sent %}
+            پست  {{ post.titles }} برای {{ form.cleaned_data.to }} ارسال شد .
+        {% endif %}
+    </h2>
+    <form method="post" style="direction: rtl">
+        {% csrf_token %}
+                {{ form.as_div }}
+{#        {% for field in form %}#}
+{#            <div>#}
+{#            {{ field.label }}#}
+{#            </div> #}
+{#            <div>#}
+{#            {{ field }}#}
+{#            </div>#}
+{#        {% endfor %}#}
+
+        <div><input type="submit" value="اشتراک گذاری پست"></div>
+
+
+    </form>
+    <a href="{% url 'blog:post-detail' post.slug post.id %}">
+        <h2> بازگشت </h2>
+    </a>
+
+    <div class="errorlist">
+        {% if form.errors %}
+            لطفا خطاهای زیر را اصلاح کنید: <br>
+            {% for field in form %}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        خطای ۱ :
+                        <br>
+                        {{ field.label }} : <br>{{ error }}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            {% if form.non_field_errors %}
+                خطای ۲:
+                {{ form.non_field_errors }}
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}
